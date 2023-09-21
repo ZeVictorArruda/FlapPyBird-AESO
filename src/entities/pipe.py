@@ -3,16 +3,23 @@ from typing import List
 
 from ..utils import GameConfig
 from .entity import Entity
+from .score import Score
 
 
 class Pipe(Entity):
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         self.vel_x = -5
+        self.scoreC = Score().score
 
     def draw(self) -> None:
         self.x += self.vel_x
         super().draw()
+
+    def increaseSpeed(self):
+        # TODO Implementar aumento de velocidade conforme pontuação
+        self.vel_x += self.scoreC / 10
+        pass
 
 
 class Pipes(Entity):
